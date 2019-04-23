@@ -1,11 +1,20 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Moja_tabela")
 public class Marka {
-   
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //autoinkrement
+    @Column(name = "id_marke")
 	private int idMarke;
+    @Column(name = "Naziv_Marke")
 	private String nazivMarke;
 	private String Zemlja;
 	
