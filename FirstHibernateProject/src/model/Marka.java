@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,8 @@ public class Marka {
 	private int idMarke;
     @Column(name = "Naziv_Marke")
 	private String nazivMarke;
-	private String Zemlja;
+    @Embedded
+	private Adresa adresa;
 	
 	public int getIdMarke() {
 		return idMarke;
@@ -30,14 +32,12 @@ public class Marka {
 	public void setNazivMarke(String nazivMarke) {
 		this.nazivMarke = nazivMarke;
 	}
-	public String getZemlja() {
-		return Zemlja;
+	public Adresa getAdresa() {
+		return adresa;
 	}
-	public void setZemlja(String zemlja) {
-		Zemlja = zemlja;
+	public void setAdresa(Adresa adresa) {
+		this.adresa = adresa;
 	}
-	
-	
 	
 	
 }
