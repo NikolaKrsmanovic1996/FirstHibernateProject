@@ -1,11 +1,14 @@
 package buisnessService;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import model.Adresa;
 import model.Marka;
+import model.User;
 
 public class CrudMetode {
 
@@ -95,5 +98,28 @@ public class CrudMetode {
 		}
 		
 	}
+
 	
+	public void UbaciUsera(String Ime, String Prezime, List<Adresa> ListaAdresa) {
+		
+		
+		User user = new User();
+		user.setIme(Ime);
+		user.setPrezime(Prezime);
+		user.setListaAdresa(ListaAdresa);
+		
+		Session sesija = sf.openSession();
+		sesija.beginTransaction();
+		
+		try {
+			sesija.save(user);
+			sesija.getTransaction().commit();
+			
+		}catch(Exception e) {
+			
+			sesija.getTransaction().rollback();
+		}finally {
+			sesija.close();
+		}	
+	}	
 }
