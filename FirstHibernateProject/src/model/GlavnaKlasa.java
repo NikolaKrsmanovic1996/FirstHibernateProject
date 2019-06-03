@@ -45,50 +45,31 @@ public class GlavnaKlasa {
 		 metode.UbaciUsera("a", "b", listaAdresa);*/
 				
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
-		  List<Adresa> listaAdresa = new ArrayList<Adresa>();
-		  List<Marka> marke = new ArrayList<Marka>();
-		  
 		  User user = new User();
-		  Marka marka = new Marka();
-		  Marka marka2 = new Marka();
-		  Adresa adresa = new Adresa();
+		  user.setIme("Nikola");
+		  user.setPrezime("Stagarevic");
+		  Administrator admin = new Administrator();
+		  admin.setIme("Djole");
+		  admin.setBanujOperatera("Necu da banujem");
+		  Operater operater = new Operater();
+		  operater.setIme("Hela");
+		  operater.setPozicija("Telefonski Operater");
 		  
-		  
-		  adresa.setZemlja("Srbija");
-		  adresa.setGrad("Beograd");
-		  adresa.setUlica("Moja ulica");
-		  
-		  marka.setNazivMarke("Ferrari");
-		  marka.setAdresa(adresa);
-		  marka.setUser(user);
-		  
-		  marka2.setNazivMarke("Lambo");
-		  marka2.setAdresa(adresa);
-		  marka2.setUser(user);
-		  
-		  
-		  user.setIme("Pera");
-		  user.setPrezime("Peric");
-		  listaAdresa.add(adresa);
-		  user.setListaAdresa(listaAdresa);
-		  marke.add(marka);
-		  marke.add(marka2);
-		  user.setMarke(marke);
-		  
-		   Session sesija = sf.openSession();
-		    sesija.beginTransaction();
-		    
-		    try {
-		    	sesija.save(user);
-		    	sesija.save(marka);
-		    	sesija.save(marka2);
-		    	sesija.getTransaction().commit();
-		    	
-		    }catch (Exception e) {
-		    	sesija.getTransaction().rollback();
-		    }finally {
-		    	sesija.close();
-		    }
+		  Session sesija = sf.openSession();
+		  sesija.beginTransaction();
+		  try {
+			  sesija.persist(user);
+			  sesija.persist(admin);
+			  sesija.persist(operater);
+			  sesija.getTransaction().commit();
+			  
+		  } catch (Exception e) {
+			  
+			  sesija.getTransaction().rollback();
+		  }finally {
+			  
+			  sesija.close();
+		  }
 		   
 		   
 		
