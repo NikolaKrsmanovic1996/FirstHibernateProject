@@ -15,6 +15,14 @@ public class GlavnaKlasa {
 
 	public static void main(String[] args) {
 		
+		
+	
+	
+		
+	
+		
+		
+		
 		/*Scanner scanner = new Scanner(System.in);
 		System.out.println("Unesite naziv_marke");
 		String naziv_marke = scanner.nextLine();
@@ -28,6 +36,9 @@ public class GlavnaKlasa {
 		//scanner.close();//
 		
 		CrudMetode metode= new CrudMetode();
+		
+		
+		
 	    // metode.ubaciMarku(naziv_marke, zemlja, grad, ulica);//
 		/*metode.ubaciMarku("Moskvich", "SSSR", "Moskva", "Staljinova 11");
 		
@@ -45,37 +56,23 @@ public class GlavnaKlasa {
 		 metode.UbaciUsera("a", "b", listaAdresa);*/
 				
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
-		  User user = new User();
-		  user.setIme("Nikola");
-		  user.setPrezime("Stagarevic");
-		  Administrator admin = new Administrator();
-		  admin.setIme("Djole");
-		  admin.setBanujOperatera("Necu da banujem");
-		  Operater operater = new Operater();
-		  operater.setIme("Hela");
-		  operater.setPozicija("Telefonski Operater");
-		  
-		  Session sesija = sf.openSession();
-		  sesija.beginTransaction();
-		  try {
-			  sesija.persist(user);
-			  sesija.persist(admin);
-			  sesija.persist(operater);
-			  sesija.getTransaction().commit();
-			  
-		  } catch (Exception e) {
-			  
-			  sesija.getTransaction().rollback();
-		  }finally {
-			  
-			  sesija.close();
-		  }
-		   
-		   
+		List <User> listausera1 = new ArrayList<>();
+		Session sesija = sf.openSession();
+		sesija.beginTransaction();
+		for(int i=0;i<=100;i++) {
+			User user = new User();
+			user.setIme("user"+i);
+			user.setPrezime("UserPrezime" +i);
+			listausera1.add(user);
+			sesija.save(user);
+			
+		}
+		 
 		
 		
 		
-		
-		
+			   		   
+					   
+		   }	
 	}
-}
+
